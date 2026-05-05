@@ -1,0 +1,28 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg-deep: #0F0A1A;
+  --color-bg-panel: rgba(26, 16, 48, 0.7);
+  --color-purple-primary: #6B46C1;
+  --color-purple-glow: #8B5CF6;
+  --color-emerald: #50C878;
+  --color-gold: #F59E0B;
+  --color-starlight: #E2E8F0;
+  --color-muted: #94A3B8;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #app {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
