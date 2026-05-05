@@ -1,1 +1,0 @@
-import{d as i,r}from"./index-D9YY5QIM.js";const f=i("user",()=>{const n=r(null),o=r(""),e=r("dark");function u(t){n.value=t}function s(t){o.value=t}function a(){e.value=e.value==="dark"?"purple":"dark"}return{birthInfo:n,deepseekApiKey:o,theme:e,updateBirthInfo:u,setApiKey:s,toggleTheme:a}},{persist:!0});export{f as u};
