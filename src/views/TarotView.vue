@@ -71,13 +71,13 @@
       </div>
 
       <BaseCard>
-        <div class="interpretation-text" v-text="interpretation"></div>
+        <div class="interpretation-text" v-html="renderMarkdown(interpretation)"></div>
       </BaseCard>
 
       <!-- AI enhanced reading -->
       <BaseCard v-if="aiResponse" class="ai-card">
         <div class="ai-label">🤖 AI 增强解读</div>
-        <div class="interpretation-text" v-text="aiResponse"></div>
+        <div class="interpretation-text" v-html="renderMarkdown(aiResponse)"></div>
       </BaseCard>
 
       <div class="reading-actions">
@@ -117,6 +117,7 @@ import { useUserStore } from '@/stores/user'
 import { useHistoryStore } from '@/stores/history'
 import { dealCards } from '@/utils/shuffle'
 import { interpretTarot, buildAiPrompt } from '@/utils/interpret'
+import { renderMarkdown } from '@/utils/markdown'
 import BaseCard from '@/components/BaseCard.vue'
 import BaseButton from '@/components/BaseButton.vue'
 import BaseModal from '@/components/BaseModal.vue'
@@ -289,9 +290,49 @@ function saveReading() {
 .result-card-dir { font-size: 0.625rem; color: var(--color-muted); margin-left: 0.25rem; }
 
 .interpretation-text {
-  white-space: pre-line;
-  line-height: 1.7;
+  line-height: 1.8;
   font-size: 0.9375rem;
+}
+.interpretation-text :deep(h1),
+.interpretation-text :deep(h2),
+.interpretation-text :deep(h3),
+.interpretation-text :deep(h4) {
+  color: var(--color-starlight);
+  margin: 1em 0 0.5em;
+  font-weight: 600;
+}
+.interpretation-text :deep(h1) { font-size: 1.25rem; }
+.interpretation-text :deep(h2) { font-size: 1.125rem; }
+.interpretation-text :deep(h3) { font-size: 1rem; }
+.interpretation-text :deep(h4) { font-size: 0.9375rem; }
+.interpretation-text :deep(p) { margin: 0.5em 0; }
+.interpretation-text :deep(ul),
+.interpretation-text :deep(ol) {
+  padding-left: 1.25rem;
+  margin: 0.5em 0;
+}
+.interpretation-text :deep(li) { margin: 0.25em 0; }
+.interpretation-text :deep(strong) {
+  color: var(--color-starlight);
+  font-weight: 600;
+}
+.interpretation-text :deep(em) { color: var(--color-purple-glow); }
+.interpretation-text :deep(blockquote) {
+  border-left: 3px solid rgba(107, 70, 193, 0.3);
+  padding-left: 0.75rem;
+  margin: 0.5em 0;
+  color: var(--color-muted);
+}
+.interpretation-text :deep(hr) {
+  border: none;
+  border-top: 1px solid rgba(107, 70, 193, 0.15);
+  margin: 1em 0;
+}
+.interpretation-text :deep(code) {
+  background: rgba(107, 70, 193, 0.15);
+  padding: 0.125em 0.375em;
+  border-radius: 4px;
+  font-size: 0.875em;
 }
 .ai-card {
   margin-top: 0.75rem;
