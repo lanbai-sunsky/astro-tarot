@@ -1,0 +1,1 @@
+import{d as u,r as s}from"./index-DYwWm7-v.js";const f=u("user",()=>{const t=s(null),r=s("");function n(e){t.value=e}function o(e){r.value=e}return{birthInfo:t,deepseekApiKey:r,updateBirthInfo:n,setApiKey:o}},{persist:!0});export{f as u};
