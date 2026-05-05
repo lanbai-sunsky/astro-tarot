@@ -29,10 +29,12 @@ export const planetNames: Record<string, string> = {
   Sun: '太阳', Moon: '月亮', Mercury: '水星', Venus: '金星', Mars: '火星',
   Jupiter: '木星', Saturn: '土星', Uranus: '天王星', Neptune: '海王星', Pluto: '冥王星',
   Chiron: '凯龙星', Ceres: '谷神星', Pallas: '智神星', Juno: '婚神星', Vesta: '灶神星',
-  Ascendant: '上升点', Midheaven: '中天',
-  'North Node': '北交点', 'South Node': '南交点', 'True Node': '北交点',
-  Lilith: '莉莉丝', 'Black Moon Lilith': '暗月莉莉丝',
-  Vertex: '宿命点', 'Part of Fortune': '福点',
+  ASC: '上升点', Ascendant: '上升点',
+  MC: '中天', Midheaven: '中天',
+  'North Node': '北交点', 'South Node': '南交点',
+  Lilith: '莉莉丝', 'Mean Lilith': '莉莉丝',
+  Fortune: '福点',
+  Vertex: '宿命点',
 }
 
 export const aspectMeanings: Record<string, string> = {
