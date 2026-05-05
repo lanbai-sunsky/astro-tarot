@@ -13,7 +13,6 @@ export interface BirthInfo {
 export const useUserStore = defineStore('user', () => {
   const birthInfo = ref<BirthInfo | null>(null)
   const deepseekApiKey = ref('')
-  const theme = ref<'dark' | 'purple'>('dark')
 
   function updateBirthInfo(info: BirthInfo) {
     birthInfo.value = info
@@ -23,11 +22,7 @@ export const useUserStore = defineStore('user', () => {
     deepseekApiKey.value = key
   }
 
-  function toggleTheme() {
-    theme.value = theme.value === 'dark' ? 'purple' : 'dark'
-  }
-
-  return { birthInfo, deepseekApiKey, theme, updateBirthInfo, setApiKey, toggleTheme }
+  return { birthInfo, deepseekApiKey, updateBirthInfo, setApiKey }
 }, {
   persist: true,
 })

@@ -44,21 +44,6 @@
       </p>
     </BaseCard>
 
-    <!-- Theme -->
-    <BaseCard style="margin-top: 0.75rem;">
-      <h3 class="section-title">主题</h3>
-      <div class="theme-options">
-        <button :class="['theme-btn', { active: userStore.theme === 'dark' }]" @click="userStore.toggleTheme()">
-          <span class="theme-swatch dark"></span>
-          <span>深邃夜空</span>
-        </button>
-        <button :class="['theme-btn', { active: userStore.theme === 'purple' }]" @click="userStore.toggleTheme()">
-          <span class="theme-swatch purple"></span>
-          <span>紫水晶</span>
-        </button>
-      </div>
-    </BaseCard>
-
     <!-- About -->
     <BaseCard style="margin-top: 0.75rem;">
       <h3 class="section-title">关于</h3>
@@ -160,43 +145,6 @@ function onApiKeyChange(e: Event) {
 }
 .api-key-row .field-input:focus {
   border-color: var(--color-purple-glow);
-}
-.theme-options {
-  display: flex;
-  gap: 0.75rem;
-  margin-top: 0.5rem;
-}
-.theme-btn {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem 1rem;
-  border-radius: 0.75rem;
-  border: 1px solid rgba(107, 70, 193, 0.15);
-  background: rgba(15, 10, 26, 0.4);
-  color: var(--color-muted);
-  cursor: pointer;
-  font-size: 0.8125rem;
-  transition: all 0.2s;
-}
-.theme-btn.active {
-  border-color: var(--color-purple-glow);
-  color: var(--color-starlight);
-  background: rgba(107, 70, 193, 0.1);
-}
-.theme-swatch {
-  width: 1rem;
-  height: 1rem;
-  border-radius: 50%;
-  flex-shrink: 0;
-}
-.theme-swatch.dark {
-  background: linear-gradient(135deg, #0F0A1A 0%, #1A1030 100%);
-  border: 1px solid rgba(107, 70, 193, 0.3);
-}
-.theme-swatch.purple {
-  background: linear-gradient(135deg, #1A1030 0%, #2D1B69 100%);
-  border: 1px solid rgba(168, 139, 250, 0.4);
 }
 .about-text {
   font-size: 0.8125rem;
