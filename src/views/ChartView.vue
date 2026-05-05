@@ -20,6 +20,11 @@
 
       <div v-if="calculating" class="loading">计算星盘中...</div>
 
+      <div v-else-if="errorMsg" class="error-msg">
+        <p>{{ errorMsg }}</p>
+        <BaseButton variant="secondary" @click="errorMsg = ''; showEditForm = true" style="margin-top:0.5rem;">修改出生信息</BaseButton>
+      </div>
+
       <div v-else-if="chartData" class="result-section">
         <!-- Chart wheel -->
         <ChartWheel :chart="chartData" />
@@ -103,6 +108,7 @@ const historyStore = useHistoryStore()
 const chartData = ref<ChartData | null>(null)
 const calculating = ref(false)
 const showEditForm = ref(false)
+const errorMsg = ref('')
 
 const planetSymbols: Record<string, string> = {
   Sun: '☉', Moon: '☽', Mercury: '☿', Venus: '♀', Mars: '♂',
@@ -130,6 +136,7 @@ async function handleBirthSubmit(info: BirthInfo) {
   userStore.updateBirthInfo(info)
   showEditForm.value = false
   calculating.value = true
+  errorMsg.value = ''
   try {
     chartData.value = await calculateChartData(info)
     historyStore.saveChart({
@@ -141,6 +148,8 @@ async function handleBirthSubmit(info: BirthInfo) {
       ascendant: chartData.value.ascendant.signName,
       timestamp: Date.now(),
     })
+  } catch (e: any) {
+    errorMsg.value = e?.message || '星盘计算出错，请检查出生信息'
   } finally {
     calculating.value = false
   }
@@ -151,6 +160,8 @@ onMounted(async () => {
     calculating.value = true
     try {
       chartData.value = await calculateChartData(userStore.birthInfo)
+    } catch (e: any) {
+      errorMsg.value = e?.message || '星盘计算出错，请检查出生信息'
     } finally {
       calculating.value = false
     }
@@ -173,6 +184,7 @@ onMounted(async () => {
   margin-bottom: 1rem;
 }
 .loading { text-align: center; color: var(--color-purple-glow); padding: 3rem 0; }
+.error-msg { text-align: center; color: #EF4444; padding: 2rem 1rem; font-size: 0.9375rem; }
 
 .asc-card { text-align: center; margin-bottom: 0.75rem; }
 .asc-label { font-size: 0.75rem; color: var(--color-muted); }

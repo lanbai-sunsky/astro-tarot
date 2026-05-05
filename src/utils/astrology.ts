@@ -40,7 +40,7 @@ export interface ChartData {
 function toBirthInput(info: BirthInfo) {
   const [y, m, d] = info.date.split('-').map(Number)
   const [h, min] = info.time.split(':').map(Number)
-  const tzOffset = parseInt(info.timezone)
+  const tzOffset = getTimezoneOffset(info.timezone)
   return { year: y, month: m, day: d, hour: h || 0, minute: min || 0, second: 0, latitude: info.lat, longitude: info.lng, timezone: tzOffset }
 }
 
