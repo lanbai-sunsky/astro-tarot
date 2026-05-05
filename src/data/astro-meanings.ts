@@ -6,6 +6,25 @@ export const signNames: Record<string, string> = {
   Sagittarius: '射手座', Capricorn: '摩羯座', Aquarius: '水瓶座', Pisces: '双鱼座',
 }
 
+// celestine formatted strings use 3-letter abbreviations
+const signAbbr: Record<string, string> = {
+  Ari: '白羊座', Tau: '金牛座', Gem: '双子座', Can: '巨蟹座',
+  Leo: '狮子座', Vir: '处女座', Lib: '天秤座', Sco: '天蝎座',
+  Sag: '射手座', Cap: '摩羯座', Aqu: '水瓶座', Pis: '双鱼座',
+}
+
+export function toChineseFormatted(en: string): string {
+  let result = en
+  for (const [abbr, cn] of Object.entries(signAbbr)) {
+    result = result.replace(abbr, cn)
+  }
+  // Also try full English names as fallback
+  for (const [enName, cnName] of Object.entries(signNames)) {
+    result = result.replace(enName, cnName)
+  }
+  return result
+}
+
 export const planetNames: Record<string, string> = {
   Sun: '太阳', Moon: '月亮', Mercury: '水星', Venus: '金星', Mars: '火星',
   Jupiter: '木星', Saturn: '土星', Uranus: '天王星', Neptune: '海王星', Pluto: '冥王星',

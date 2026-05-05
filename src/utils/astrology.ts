@@ -1,4 +1,5 @@
 import type { BirthInfo } from '@/stores/user'
+import { toChineseFormatted } from '@/data/astro-meanings'
 
 export interface PlanetData {
   name: string
@@ -6,6 +7,7 @@ export interface PlanetData {
   degree: number
   house: number
   formatted: string
+  formattedCn: string
   longitude: number
   isRetrograde: boolean
 }
@@ -14,6 +16,7 @@ export interface HouseCusp {
   house: number
   signName: string
   formatted: string
+  formattedCn: string
   longitude: number
 }
 
@@ -26,8 +29,8 @@ export interface AspectData {
 }
 
 export interface ChartData {
-  ascendant: { signName: string; formatted: string; degree: number }
-  midheaven: { signName: string; formatted: string }
+  ascendant: { signName: string; formatted: string; formattedCn: string; degree: number }
+  midheaven: { signName: string; formatted: string; formattedCn: string }
   planets: PlanetData[]
   houses: HouseCusp[]
   aspects: AspectData[]
@@ -55,6 +58,7 @@ export async function calculateChartData(info: BirthInfo): Promise<ChartData> {
     degree: p.degree,
     house: p.house,
     formatted: p.formatted,
+    formattedCn: toChineseFormatted(p.formatted),
     longitude: p.longitude,
     isRetrograde: p.isRetrograde ?? false,
   }))
@@ -63,6 +67,7 @@ export async function calculateChartData(info: BirthInfo): Promise<ChartData> {
     house: c.house,
     signName: c.signName,
     formatted: c.formatted,
+    formattedCn: toChineseFormatted(c.formatted),
     longitude: c.longitude,
   }))
 
@@ -78,8 +83,8 @@ export async function calculateChartData(info: BirthInfo): Promise<ChartData> {
   const mc = chart.angles.midheaven
 
   return {
-    ascendant: { signName: asc.signName, formatted: asc.formatted, degree: asc.degree },
-    midheaven: { signName: mc.signName, formatted: mc.formatted },
+    ascendant: { signName: asc.signName, formatted: asc.formatted, formattedCn: toChineseFormatted(asc.formatted), degree: asc.degree },
+    midheaven: { signName: mc.signName, formatted: mc.formatted, formattedCn: toChineseFormatted(mc.formatted) },
     planets,
     houses,
     aspects,

@@ -35,7 +35,7 @@
           <BaseCard class="asc-card">
             <div class="asc-label">上升星座</div>
             <div class="asc-sign">{{ chartData.ascendant.signName }}</div>
-            <div class="asc-degree">{{ chartData.ascendant.formatted }}</div>
+            <div class="asc-degree">{{ chartData.ascendant.formattedCn }}</div>
             <p class="asc-desc">{{ getSignText(chartData.ascendant.signName) }}</p>
           </BaseCard>
 

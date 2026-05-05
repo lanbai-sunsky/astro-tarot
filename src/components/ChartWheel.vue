@@ -142,8 +142,8 @@ function draw() {
   ctx.fillStyle = 'rgba(148, 163, 184, 0.5)'
   ctx.font = '9px sans-serif'
   ctx.textAlign = 'center'
-  ctx.fillText('ASC ' + props.chart.ascendant.formatted, cx, cy - 4)
-  ctx.fillText('MC ' + props.chart.midheaven.formatted, cx, cy + 10)
+  ctx.fillText('ASC ' + props.chart.ascendant.formattedCn, cx, cy - 4)
+  ctx.fillText('MC ' + props.chart.midheaven.formattedCn, cx, cy + 10)
 }
 
 onMounted(draw)
